@@ -1,0 +1,30 @@
+<div>
+  <form>
+    <label for="descripcion">Descripcion</label><br>
+    <input type="text" name="descripcion" [(ngModel)]='producto.descripcion'><br>
+    <label for="precio">Precio</label><br>
+    <input type="text" name="precio" [(ngModel)]='producto.precio'><br>
+    <label for="iva">IVA</label><br>
+    <input type="text" name="iva" [(ngModel)]='producto.IVA'><br>
+  </form>
+  <button (click)="BotonClick()">Agregar Producto</button>
+</div>
+
+<table>
+  <thead>
+    <th>Codigo</th>
+    <th>Descripcion</th>
+    <th>Precio</th>
+    <th>IVA</th>
+  </thead>
+  <tbody>
+      <tr *ngFor='let p of productos'>
+        <td>{{p.codigo}}</td>
+        <td>{{p.descripcion}}</td>
+        <td>{{p.precio}}</td>
+        <td>{{p.IVA}}</td>
+        <td><button (click)='EditarProducto(p.codigo)'>Editar</button></td>
+        <td><button (click)='EliminarProducto(p.codigo)'>Eliminar</button></td>
+      </tr>
+  </tbody>
+</table>

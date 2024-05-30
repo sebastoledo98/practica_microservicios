@@ -1,0 +1,107 @@
+services:
+  dbpostgres:
+    image: postgres
+    container_name: dbpostgres
+    hostname: dbpostgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: productos
+      TZ:  America/Guayaquil
+    ports:
+      - 5432:5432
+    networks:
+      - datalogger_net
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  servidor-wildfly:
+    image: servidor-wildfly
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: servidor-wildfly
+    hostname: srvwildfly
+    environment:
+      TZ:  America/Guayaquil
+      JAEGER_AGENT_HOST: jaegertracingio
+      JAEGER_AGENT_PORT: 6831
+      JAEGER_SAMPLER_TYPE: const
+      JAEGER_SAMPLER_PARAM: 1
+    ports:
+      - 8082:8080
+      - 8899:8009
+      - 9992:9990
+      - 8787:8787
+    #command: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -c standalone-microprofile-jaeger.xml -bmanagement 0.0.0.0 --debug *:8787
+    command: ["sh", "-c", "/opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0"]
+    depends_on:
+      - dbpostgres
+    networks:
+      - datalogger_net
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    hostname: pgadmin
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      TZ:  America/Guayaquil
+    ports:
+      - 5050:80
+    depends_on:
+      - dbpostgres
+    networks:
+      - datalogger_net
+
+  swaggerui:
+    depends_on:
+      - servidor-wildfly
+    image: swaggerapi/swagger-ui
+    ports:
+      - 8888:8080
+    networks:
+      - datalogger_net
+
+  swaggereditor:
+    depends_on:
+      - servidor-wildfly
+    image: swaggerapi/swagger-editor
+    ports:
+      - 9999:8080
+    networks:
+      - datalogger_net
+
+  jaegertracingio:
+    depends_on:
+      - servidor-wildfly
+    image: jaegertracing/all-in-one
+    ports:
+      - 6831:6831/udp
+      - 16686:16686
+    networks:
+      - datalogger_net
+
+  angular-producto:
+    image: angular-producto
+    build:
+      context: .
+      dockerfile: DockerfileAngular
+    depends_on:
+      - servidor-wildfly
+    ports:
+      - 3330:80
+    networks:
+      - datalogger_net
+
+volumes:
+  pg_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/tano/datapg
+
+networks:
+  datalogger_net:

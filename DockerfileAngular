@@ -1,0 +1,5 @@
+FROM nginx
+EXPOSE 80 3330
+COPY nginx.conf /etc/nginx/
+COPY AngularDocker/dist/angular-docker /usr/share/nginx/html/
+CMD ["sh", "-c", "nginx -g 'daemon off;'"]

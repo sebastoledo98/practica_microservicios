@@ -1,0 +1,11 @@
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/config/JaegerConfig.java
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/config/JaegerContextListener.java
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/dao/DAOProducto.java
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/gestion/GestionDatos.java
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/gestion/GestionProducto.java
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/modelo/Producto.java
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/servicios/CORSFilter.java
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/servicios/ErrorMessage.java
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/servicios/Jsf23Activator.java
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/servicios/PathBase.java
+/home/tano/Documents/Ciclo_6_P64/Sistemas_Distribuidos_P64/practica_microservicios/ProductosServidor/src/main/java/com/web/servicios/ServicioProducto.java
